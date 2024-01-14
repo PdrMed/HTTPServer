@@ -14,19 +14,19 @@ std::string CHttp::BuildHttpResponse()
     {
         std::string characterName = url.substr(pos + characterRoute.size()-1);
         std::string json = character->GetCharacterInfoAsJsonString(characterName);
-        ssOut << "HTTP/1.1 200 OK" << std::endl;
-        ssOut << "content-type: text/html" << std::endl;
-        ssOut << "content-length: " << json.size() << std::endl;
-        ssOut << std::endl;
+        ssOut << "HTTP/1.1 200 OK" << "\r\n";
+        ssOut << "content-type: text/html" << "\r\n";
+        ssOut << "content-length: " << json.size() << "\r\n";
+        ssOut << "\r\n";
         ssOut << json;
         return ssOut.str();
     }
 
     std::string sHTML = "<html><body><h1>Erro 404 Not Found</h1></body></html>";
-    ssOut << "HTTP/1.1 404 Not Found" << std::endl;
-    ssOut << "content-type: text/html" << std::endl;
-    ssOut << "content-length: " << sHTML.length() << std::endl;
-    ssOut << std::endl;
+    ssOut << "HTTP/1.1 404 Not Found" << "\r\n";
+    ssOut << "content-type: application/json" << "\r\n";
+    ssOut << "content-length: " << sHTML.length() << "\r\n";
+    ssOut << "\r\n";
     ssOut << sHTML;
     return ssOut.str();
 }
